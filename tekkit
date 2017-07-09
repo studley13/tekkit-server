@@ -1,0 +1,62 @@
+#!/bin/sh
+set -e
+
+# Get the current directory
+TEKKIT_DIR=$(dirname $0)
+
+# Add to to path
+PATH=${TEKKIT_DIR}:$PATH
+
+# Runtime arguments
+TEKKIT_JAR="Tekkit.jar"
+MEM_MAX="3G"
+MEM_INITAL="2G"
+
+# RCON Settings
+RCON_PASSWORD=$(grep "rcon.password" "${TEKKIT_DIR}/server.properties" | sed "s/^rcon.password=\(.*\)$/\1/")
+RCON_PORT=25575
+
+# Start the server (doesn't fork)
+function start_server {
+    # Start the server
+    java -Xmx"${MEM_MAX}" -Xms"${MEM_INITAL}" -jar "${TEKKIT_DIR}/${TEKKIT_JAR}" nogui
+}
+
+# Send a message to the server
+function msg_server {
+    mcrcon -H "127.0.0.1" -P "${RCON_PORT}" -p "${RCON_PASSWORD}" "$1"
+}
+
+# Stop the server
+function stop_server {
+    msg_server "stop"
+}
+
+# Show the help
+function show_help {
+    cat <<EOF 
+Usage: ${0} command [arg]
+    
+Commands:
+    start       Start the server (doesn't fork)
+    stop        Stop the server
+    msg cmd     Send the command to the server
+    help        Show this help
+EOF
+}
+
+# Execute the command
+case $1 in
+    "start")
+        start_server
+        ;;
+    "stop")
+        stop_server
+        ;;
+    "msg")
+        msg_server "$2"
+        ;;
+    *)
+        show_help
+        ;;
+esac

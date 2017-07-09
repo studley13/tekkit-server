@@ -9,7 +9,7 @@ After=network.target
 User=tekkit
 Group=tekkit
 Nice=5
-EnvironmentFile=/var/tekkit/unit.conf
+EnvironmentFile=/var/tekkit-server/unit.conf
 KillMode=none
 SuccessExitStatus=0 1
 
@@ -19,10 +19,10 @@ PrivateDevices=true
 NoNewPrivileges=true
 PrivateTmp=true
 InaccessibleDirectories=/root /sys /srv -/opt /media -/lost+found
-ReadWriteDirectories=/var/tekkit
-WorkingDirectory=/var/tekkit
-ExecStart=/var/tekkit/tekkit start
-ExecStop=/var/tekkit/tekkit stop
+ReadWriteDirectories=/var/tekkit-server
+WorkingDirectory=/var/tekkit-server
+ExecStart=/var/tekkit-server/tekkit start
+ExecStop=/var/tekkit-server/tekkit stop
 
 [Install]
 WantedBy=multi-user.target

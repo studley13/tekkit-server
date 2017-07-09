@@ -1,11 +1,10 @@
 CC=clang
 CFLAGS=-Wall -Werror
 
-.PHONY: all mcrcon
+.PHONY: all
 all:	server.properties
 
 server.properties:
 	sh ./init-properties.sh > $@
-	chmod 600 $@
 
 mcrcon: mcrcon.c

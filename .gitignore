@@ -1,2 +1,14 @@
 /server.properties*
 /mcrcon
+ForgeModLoader-server-0.log
+ForgeModLoader-server-0.log.lck
+LogisticsPipes-Request.log
+LogisticsPipes-Request.log.lck
+banned-ips.txt
+banned-players.txt
+ops.txt
+server.log
+server.log.lck
+tekkit
+white-list.txt
+world/

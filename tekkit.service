@@ -9,7 +9,6 @@ After=network.target
 User=tekkit
 Group=tekkit
 Nice=5
-EnvironmentFile=/var/tekkit-server/unit.conf
 KillMode=none
 SuccessExitStatus=0 1
 
